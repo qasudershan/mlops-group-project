@@ -24,6 +24,6 @@ jobs:
       - name: Run inference
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_MODEL_NAME: qasudershan/mlops-imdb-sentiment
+          HF_MODEL_NAME: Manishrepo-bi/mlops-imdb-sentiment
           INPUT_TEXT: ${{ github.event.inputs.input_text }}
         run: python src/inference.py

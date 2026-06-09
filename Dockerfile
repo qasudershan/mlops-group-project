@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-ARG HF_MODEL_NAME=qasudershan/mlops-imdb-sentiment
+ARG HF_MODEL_NAME=Manishrepo-bi/mlops-imdb-sentiment
 ENV HF_MODEL_NAME=$HF_MODEL_NAME
 
 COPY requirements.txt .

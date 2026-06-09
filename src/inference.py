@@ -2,7 +2,7 @@ import os
 from transformers import pipeline
 
 # These come from environment variables (set via Docker or GitHub Actions)
-MODEL_NAME = os.environ.get("HF_MODEL_NAME", "qasudershan/mlops-imdb-sentiment")
+MODEL_NAME = os.environ.get("HF_MODEL_NAME", "Manishrepo-bi/mlops-imdb-sentiment")
 INPUT_TEXT = os.environ.get("INPUT_TEXT", "This movie was absolutely fantastic!")
 HF_TOKEN   = os.environ.get("HF_TOKEN", None)
 
