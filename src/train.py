@@ -1,6 +1,4 @@
-# NOTE: This script is for reference only.
-# Actual training must be run on Kaggle Notebooks with GPU.
-# See: https://www.kaggle.com/ for the live notebook.
+
 
 from transformers import (
     AutoTokenizer,
