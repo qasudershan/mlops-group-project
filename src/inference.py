@@ -1,7 +1,10 @@
 import os
-from transformers import pipeline
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSequenceClassification,
+    pipeline,
+)
 
-# These come from environment variables (set via Docker or GitHub Actions)
 MODEL_NAME = os.environ.get("HF_MODEL_NAME", "Manishrepo-bi/mlops-imdb-sentiment")
 INPUT_TEXT = os.environ.get("INPUT_TEXT", "This movie was absolutely fantastic!")
 HF_TOKEN   = os.environ.get("HF_TOKEN", None)
@@ -9,10 +12,17 @@ HF_TOKEN   = os.environ.get("HF_TOKEN", None)
 print(f"Loading model: {MODEL_NAME}")
 print(f"Input text:    {INPUT_TEXT}")
 
+# Load tokenizer + model explicitly so we can control the inputs
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=HF_TOKEN)
+# DistilBERT does NOT use token_type_ids — force the tokenizer to skip them
+tokenizer.model_input_names = ["input_ids", "attention_mask"]
+
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, token=HF_TOKEN)
+
 classifier = pipeline(
     "text-classification",
-    model=MODEL_NAME,
-    token=HF_TOKEN
+    model=model,
+    tokenizer=tokenizer,
 )
 
 result = classifier(INPUT_TEXT)
