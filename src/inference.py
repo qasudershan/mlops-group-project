@@ -1,15 +1,19 @@
+import torch
 import os
-from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-MODEL_NAME = os.environ.get("HF_MODEL_NAME", "qasudershan/mlops-imdb-sentiment")
-INPUT_TEXT = os.environ.get("INPUT_TEXT", "This movie was absolutely fantastic!")
-HF_TOKEN   = os.environ.get("HF_TOKEN", None)
+MODEL_NAME = os.environ.get(
+    "HF_MODEL_NAME", "qasudershan/mlops-imdb-sentiment")
+INPUT_TEXT = os.environ.get(
+    "INPUT_TEXT", "This movie was absolutely fantastic!")
+HF_TOKEN = os.environ.get("HF_TOKEN", None)
 
 print(f"Loading model: {MODEL_NAME}")
 print(f"Input text:    {INPUT_TEXT}")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=HF_TOKEN)
-model     = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, token=HF_TOKEN)
+model = AutoModelForSequenceClassification.from_pretrained(
+    MODEL_NAME, token=HF_TOKEN)
 
 inputs = tokenizer(
     INPUT_TEXT,
@@ -21,7 +25,6 @@ inputs = tokenizer(
 # DistilBERT doesn't use token_type_ids
 inputs.pop("token_type_ids", None)
 
-import torch
 
 outputs = model(**inputs)
 
