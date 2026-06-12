@@ -20,7 +20,7 @@ MAX_LENGTH = 128
 EPOCHS = 4
 BATCH_SIZE = 32
 LEARNING_RATE = 5e-5
-RUN_NAME = "run-v2"   
+RUN_NAME = "run-v2"
 
 # ── Load id2label ───────────────────────────────────────────────
 with open("id2label.json") as f:
