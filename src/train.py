@@ -17,10 +17,10 @@ import json
 # ── Config ─────────────────────────────────────────────────────
 MODEL_NAME = "distilbert-base-uncased"
 MAX_LENGTH = 128
-EPOCHS = 3
-BATCH_SIZE = 16
-LEARNING_RATE = 3e-5
-RUN_NAME = "run-v1"   # Change to "run-v2" for second experiment
+EPOCHS = 4
+BATCH_SIZE = 32
+LEARNING_RATE = 5e-5
+RUN_NAME = "run-v2"   
 
 # ── Load id2label ───────────────────────────────────────────────
 with open("id2label.json") as f:
